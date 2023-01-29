@@ -1,13 +1,41 @@
 package com.example.alogrithems
 
 fun main(){
-    val a : ArrayList<Int> = arrayListOf(1,2,3,4,5,6)
-    val b : ArrayList<Int> = arrayListOf(1,2,3,4,5)
+    EventPrinter().start()
+
+    val pureum = String().pureum()
 
 
-    a.forEachIndexed { index, i ->
-        println("${index}, ${i}")
+
+    fun String.pureum(): String {
+        return "pureum"
     }
-
-
 }
+
+
+
+
+
+interface EventListener{
+    fun onEvent(count:Int)
+}
+
+class Counter(var listener: EventListener){
+    fun count(){
+        for(i in 1..100){
+            if(i%5 == 0) listener.onEvent(i)
+        }
+    }
+}
+
+class EventPrinter{
+    fun start(){
+        val counter = Counter(object: EventListener {
+            override fun onEvent(count: Int) {
+                print("${count}-")
+            }
+        })
+        counter.count()
+    }
+}
+
