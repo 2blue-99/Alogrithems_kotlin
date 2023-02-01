@@ -7,9 +7,11 @@ package com.example.alogrithems
 fun main(){
     var people = readln().toInt()
     var list = arrayListOf<List<Int>>()
-    var compareList = list.toArray()
-    for(i in 1..people)
-        list.add(readln().split(" ").map { it.toInt() })
+    for(i in 1..people) list.add(readln().split(" ").map { it.toInt() })
 
-
+    for(i in 0 until people){
+        var count = 1
+        for(gap in list) if(list[i][0] < gap[0] && list[i][1] < gap[1]) count++
+        print("$count ")
+    }
 }
