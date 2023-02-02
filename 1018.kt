@@ -6,35 +6,37 @@ package com.example.alogrithems
  */
 
 fun main() {
-    var inputList = arrayListOf<List<String>>()
-    var aList = arrayListOf<List<String>>()
-    var bList = arrayListOf<List<String>>()
-    var (n, m) = readln().split(" ").map { it.toInt() }
-    for(i in 1..n) inputList.add(readln().chunked(1))
-    println(inputList)
+    val (n,m) = readln().split(" ").map { it.toInt() }
+    val list = ArrayList<List<String>>()
+    val dapList = ArrayList<Int>()
+    for(i in 1..n){ list.add(readln().chunked(1)) }
 
-    var dap = 0
-    var change=true
-    var count = 0
-    var index:Int
-    var myList = arrayListOf<Int>()
-    for(z in 1..(m-8)) {
-        for (i in inputList) {
+    var (index,count) = listOf(0,0)
+    var change = true
+    var listSlice:Int
+    for(a in 1..2) {
+        listSlice = 0
+        for (z in 0..(n - 8)) { //아래로 내리기
             index = 0
-            for (a in count until count + 8) {
-                if (change) {
-                    if (i[a%8] != "W") dap++
-                } else {
-                    if (i[a%8] != "B") dap++
+            for (k in 0..(m - 8)) { //오른쪽으로 옮기기
+                count = 0
+                for (row in list.slice(listSlice until listSlice + 8)) { //8개의 줄
+                    for (i in index until index + 8) {
+                        if (change) {
+                            if (row[i] != "W") { count++ }
+                        } else {
+                            if (row[i] != "B") { count++ }
+                        }
+                        change = !change
+                    }
+                    change = !change
                 }
-                change = !change
                 index++
+                dapList.add(count)
             }
-            change = !change
+            listSlice++
         }
-        myList.add(dap)
-        println(myList)
-        count++
-        dap = 0
+        change = !change
     }
+    println(dapList.min())
 }
