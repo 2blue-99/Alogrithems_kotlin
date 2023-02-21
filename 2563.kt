@@ -5,8 +5,20 @@ package com.example.alogrithems
  * pureum
  */
 
-fun main(){
+fun main() {
     val num = readln().toInt()
-    for(i in 1..num) readln().split(" ").map { it.toInt() }
-    val all = num*100
+    val list = Array(100){BooleanArray(100)}
+    var dap = 0
+    for (i in 1..num) {
+        val (x, y) = readln().split(" ").map { it.toInt() }
+        for (z in y until y+10) {
+            for (k in x until x + 10) {
+                if (list[z][k]) continue
+                list[z][k] = true
+                dap++
+            }
+        }
+    }
+    println(dap)
 }
+
