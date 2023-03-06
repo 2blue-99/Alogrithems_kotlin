@@ -1,41 +1,9 @@
 package com.example.alogrithems
 
-fun main(){
-    EventPrinter().start()
-
-    val pureum = String().pureum()
-
-
-
-    fun String.pureum(): String {
-        return "pureum"
-    }
-}
-
-
-
-
-
-interface EventListener{
-    fun onEvent(count:Int)
-}
-
-class Counter(var listener: EventListener){
-    fun count(){
-        for(i in 1..100){
-            if(i%5 == 0) listener.onEvent(i)
-        }
-    }
-}
-
-class EventPrinter{
-    fun start(){
-        val counter = Counter(object: EventListener {
-            override fun onEvent(count: Int) {
-                print("${count}-")
-            }
-        })
-        counter.count()
-    }
+fun main() {
+    val a = listOf(readLine()!!, readLine()!!)
+    var b = MutableList(16) {a[it%2][it/2]-'0'}
+    repeat(14) { b = MutableList(b.size-1) {(b[it] + b[it+1]) % 10} }
+    println(b.joinToString(""))
 }
 
