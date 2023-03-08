@@ -1,31 +1,24 @@
 package com.example.alogrithems
 
-import java.math.BigInteger
+import kotlin.math.min
 
 /**
  * 2023-03-06
  * pureum
  */
 
-//val myList = Array(31){i -> BigInteger("0")}
+var count = 0
 
 fun main(){
-    val num = readln().toInt()
-    for( i in 1..num) {
-        val (r, n) = readln().split(" ").map { it.toInt() }
-        println(nCr(n,r))
+    var num = readln().toInt()
+    val myArray = IntArray(num+1)
+    for(i in 2..num){
+        myArray[i] = myArray[i-1]+1
+        if(i%2==0) myArray[i] = min(myArray[i], myArray[i/2]+1)
+        if(i%3==0) myArray[i] = min(myArray[i], myArray[i/3]+1)
     }
+    println(myArray[num])
 }
 
-fun nCr(n:Int, r:Int):BigInteger{
-    return fac(n) / (fac(n-r) * fac(r))
-}
 
-fun fac(gap:Int):BigInteger{
-//    if(myList[gap] != BigInteger("0") ) return myList[gap]
-    var hap= BigInteger("1")
-    for(i in 1..gap) { hap *= i.toBigInteger() }
-//    myList[gap] = hap
-    return hap
-}
 
