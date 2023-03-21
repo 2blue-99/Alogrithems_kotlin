@@ -1,36 +1,30 @@
 package com.example.alogrithems
 
+import java.lang.Exception
+
+
 /**
  * 2023-03-01
  * pureum
  */
 
 fun main(){
-    val timeList = ArrayList<Int>()
-    val payList = ArrayList<Int>()
-    var today=0
-    var myToday=0
-    var next=0
-    var money = 0
-    var maxMoney = 0
-    var nums = readln().toInt()
-    for( i in 0 until nums){
-        val (time,pay) = readln().split(" ").map { it.toInt() }
-        timeList.add(time)
-        payList.add(pay)
-    }
+    val num = readln().toInt()
+    val storeArray = Array(1050){ arrayListOf(0)}
+    val maxArray = Array(num+1){0}
+    val day = Array(num+1){0}
+    val money = Array(num+1){0}
 
-    for(i in 0 until nums){
-        today = i
-        myToday = today
-        while(true){
-            today += timeList[today]
-            if(today>nums) {
-                if(maxMoney<money) maxMoney = money
-                today=myToday+1
-                continue
-            }
-            money += payList[today]
-        }
+    for(i in 1..num){
+        val (a,b) = readln().split(" ").map { it.toInt() }
+        day[i] = a
+        money[i] = b
     }
+    for(i in 1..num){
+        if(day[i]+i-1 > num) continue
+        maxArray[i] += storeArray[i].max() + money[i]
+        for(k in i..num)
+            storeArray[ day[i] + k ].add(maxArray[i])
+    }
+    println(maxArray.max())
 }
