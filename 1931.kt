@@ -13,7 +13,7 @@ fun main() {
         myList.add(listOf(start, end))
     }
 
-    myList.sortWith(compareBy<List<Int>> {it[1]}.thenBy{it[0]})
+    myList.sortWith(compareBy({it[1]}, {it[0]}))
 //    myList.forEach { println(it) }
 
     var count = 1
