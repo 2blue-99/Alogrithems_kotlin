@@ -12,21 +12,21 @@ fun main() {
         var myList = readln().split(" ").map { it.toInt() }.reversed().toMutableList()
         var max = myList.first()
         var count = 0
-        var total = 0UL
+        var total = 0L
         var part = 0
         for (now in 1..myList.lastIndex) {
             if (myList[now] < max) {
                 count++
                 part = part - myList[now] + max
             } else if (myList[now] == max) {
-                total += part.toULong()
+                total += part.toLong()
                 part = 0
                 count = 0
             }else{
                 max = myList[now]
             }
         }
-        total+=part.toULong()
+        total+=part.toLong()
         println(total)
     }
 }
