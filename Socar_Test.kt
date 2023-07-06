@@ -7,7 +7,7 @@ package com.example.alogrithems
 
 fun main(){
     val xArray = Array(1_000_000){0}
-    val yArray = Array(1_000_000){0}
+    val yArray = Array(1_000_000){0} // [0,1,2,3],[1,2,3,4]
     val myArray = arrayListOf<MutableList<Int>>()
     val input = readln()
     input.slice(1..input.length-2)
@@ -20,13 +20,14 @@ fun main(){
         }
 
     myArray.sortBy { it[2] }
-    println("for down array : $myArray")
+//    println("for down array : $myArray")
 
     for(i in 0 until myArray.size){
         var start = myArray[i][1]
         var end = myArray[i][3]
         var nowHeight = xArray.slice(start until end).max()
         var gap = myArray[i][2]-nowHeight
+
         myArray[i][2] = nowHeight
         myArray[i][4] = myArray[i][4]-gap
         for( k in start until end)
@@ -34,7 +35,7 @@ fun main(){
     }
 
     myArray.sortBy { it[1] }
-    println("for left array : $myArray")
+//    println("for left array : $myArray")
 
     for(i in 0 until myArray.size){
         var start = myArray[i][2]
@@ -48,7 +49,7 @@ fun main(){
     }
     myArray.sortBy { it.first() }
     myArray.forEach { it.removeAt(0) }
-    println(myArray)
+//    println(myArray)
     print("[")
     repeat(myArray.size){
         print(myArray[it].toString().replace("[","\"").replace("]","\"").replace(",",""))
