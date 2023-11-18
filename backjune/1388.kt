@@ -20,7 +20,6 @@ fun main() {
             dfs1388(i, k, " ")
     println(myCount)
 }
-// n 세로, m 세로
 fun dfs1388(n: Int, m: Int, before: String){
     if(n>= maxN || m >= maxM) {
         myCount++
