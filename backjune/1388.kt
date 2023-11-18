@@ -1,7 +1,4 @@
 package com.example.alogrithems.backjune
-
-import java.lang.Exception
-
 /**
  * 2023-11-16
  * pureum
@@ -19,41 +16,26 @@ fun main() {
         arr.add(readln().chunked(1).toMutableList())
     }
     for(i in 0 until maxN)
-        for(k in 0 until maxM)
-            dfs1388(i,k)
+        for (k in 0 until maxM)
+            dfs1388(i, k, " ")
     println(myCount)
 }
 // n 세로, m 세로
-fun dfs1388(n: Int, m: Int){
+fun dfs1388(n: Int, m: Int, before: String){
     if(n>= maxN || m >= maxM) {
         myCount++
         return
     }
-    if(arr[n][m] == "")
-        return
-    if(arr[n][m]=="-"){
-        arr[n][m] = ""
-        width(n, m+1)
+    if(arr[n][m] == " " && before == " ") return
+    if(arr[n][m]=="-" && (before == "-" || before == " ")){
+        arr[n][m] = " "
+        dfs1388(n, m+1, "-")
     }
-    else if(arr[n][m]=="|"){
-        arr[n][m] = ""
-        high(n+1, m)
-    }
-}
-fun width(n: Int, m: Int){
-    if(arr[n][m] != "-"){
+    else if(arr[n][m]=="|" && (before == "|" || before == " ")){
+        arr[n][m] = " "
+        dfs1388(n+1, m, "|")
+    }else{
         myCount++
         return
     }
-    arr[n][m] = ""
-    width(n, m+1)
-}
-
-fun high(n: Int, m: Int){
-    if(arr[n][m] != "|"){
-        myCount++
-        return
-    }
-    arr[n][m] = ""
-    high(n+1, m)
 }
