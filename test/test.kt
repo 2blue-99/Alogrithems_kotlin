@@ -7,8 +7,15 @@ package com.example.alogrithems.test
 
 fun main() {
 
-    var list = arrayListOf(1,2,3,4,5)
-    for(i in list){
-        println(i)
-    }
+    var list = arrayOf(1,1,1,2,3,4,5)
+    val two = list.copyOf()
+
+    println(list.contentToString())
+    println(two.contentToString())
+
+    list[0] = 999
+
+    println(list.contentToString())
+    println(two.contentToString())
+
 }
