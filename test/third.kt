@@ -43,7 +43,7 @@ fun main(){
 
     repeat(aArr.size){
         repeat(1296){
-            repeat()
+//            repeat()
         }
     }
 }
