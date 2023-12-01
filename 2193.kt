@@ -13,21 +13,5 @@ package com.example.alogrithems
 // 이친수 조건 2 : 11이 반복되면 안됨.
 
 fun main(){
-    var arr = LongArray(91){ 0L }
-    arr[1] = 1
-    arr[2] = 1
-    var input = readln().toInt()
-    for(i in 2..input){
-        arr[i] = arr[i-1] + arr[i-2]
-    }
-    println(arr[input])
+    println(3/2)
 }
-
-//for(i in 2..input){
-//    for(k in arr[i-1]){
-//        arr[i].add(k.last()+"0")
-//        val gap = k.last() + "1"
-//        if(gap != "11")
-//            arr[i].add(gap)
-//    }
-//}
