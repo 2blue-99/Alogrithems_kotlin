@@ -14,48 +14,46 @@ fun main(){
 
     val (maxW, maxH) = br.readLine().split(" ").map { it.toInt() }
     val arr = Array(maxH){intArrayOf()}
-    val vArr = Array(maxH){BooleanArray(maxW){false} }
-    var count = 0
+    var max = 0
     repeat(maxH){
         arr[it] = br.readLine().split(" ").map { it.toInt() }.toIntArray()
     }
 
     val queue = ArrayDeque<List<Int>>()
-    while(true) {
 
-        var uncooked = false
-
-        for (h in 0 until maxH) {
-            for (w in 0 until maxW) {
-                if(arr[h][w] == 1 && !vArr[h][w]){
-                    vArr[h][w] = true
-                    queue.addLast(listOf(h + 1, w))
-                    queue.addLast(listOf(h - 1, w))
-                    queue.addLast(listOf(h, w + 1))
-                    queue.addLast(listOf(h, w - 1))
-                }
-                if(arr[h][w] == 0)
-                    uncooked = true
+    for(h in 0 until maxH ){
+        for(w in 0 until maxW){
+            if(arr[h][w] == 1){
+                arr[h][w]=0
+                queue.addLast(listOf(h,w,0))
             }
         }
+    }
 
-        if(queue.isEmpty()){
-            if(uncooked) {
-                println(-1)
-                break
-            }else{
-                println(--count)
-                break
+    while(queue.isNotEmpty()){
+        val (h,w,count) = queue.removeFirst()
+        if(h<0 || w<0 || h>=maxH || w>=maxW) continue
+        if(arr[h][w] != 0) continue
+        arr[h][w] = 1
+        max = count
+
+        queue.addLast(listOf(h + 1, w, count+1))
+        queue.addLast(listOf(h - 1, w, count+1))
+        queue.addLast(listOf(h, w + 1, count+1))
+        queue.addLast(listOf(h, w - 1, count+1))
+    }
+
+    for(h in 0 until maxH ){
+        for(w in 0 until maxW){
+            if(arr[h][w] == 0){
+                queue.addLast(listOf(h,w,0))
             }
         }
+    }
 
-        while(queue.isNotEmpty()){
-            val (h,w) = queue.removeFirst()
-            if(h<0 || w<0 || h>=maxH || w>=maxW) continue
-            if(arr[h][w] != 0) continue
-            if(vArr[h][w]) continue
-            arr[h][w] = 1
-        }
-        count++
+    if(queue.isNotEmpty()){
+        println(-1)
+    }else{
+        println(max)
     }
 }
