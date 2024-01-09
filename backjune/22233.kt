@@ -1,12 +1,18 @@
 package com.example.alogrithems.backjune
 
-import java.io.BufferedInputStream
 import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
+import java.util.LinkedList
+import java.util.Queue
 
 fun main(){
+
+//    val queue = ArrayDeque<Int>()
+
+
+
     // 메모장 키워드 개수 N, 블로그에 쓴 글 개수M
     val br = BufferedReader(InputStreamReader(System.`in`))
     val bw = BufferedWriter(OutputStreamWriter(System.out))

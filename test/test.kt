@@ -1,23 +1,25 @@
 package com.example.alogrithems.test
 
 import java.util.LinkedList
+import java.util.Queue
 
 /**
  * 2023-11-18
  * pureum
  */
-data class Test(
-    val name : String,
-    val age :Int
-)
-fun main() {
-    val gap = mutableListOf(Test("a", 4),Test("b", 3),Test("c", 2),Test("a", 1))
-    val gap2 = Array<Int>(10){0}
-//    println(gap)
-//    println(gap.sortedBy{it.name })
-//    println(gap.sortedWith(compareBy<Test>{it.name}.thenBy{it.age} ))
 
-    println(gap.onEach { it.age+5 })
-    println(gap.forEach { it.age+5 })
-    val map = emptyList<Int>()
+fun main() {
+
+    lateinit var gap: Array<IntArray>
+    var a = Array<Int>(5){it+1}
+    a[3] = 100
+    val b = a.toMutableList()
+    val c = b.toMutableList()
+    b[2] = 100
+    println(b)
+    println(c)
+    c[2] = 88
+    println(b)
+    println(c)
+    println(a.contentToString())
 }
