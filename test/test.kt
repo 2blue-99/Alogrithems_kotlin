@@ -10,16 +10,21 @@ import java.util.Queue
 
 fun main() {
 
-    lateinit var gap: Array<IntArray>
-    var a = Array<Int>(5){it+1}
-    a[3] = 100
-    val b = a.toMutableList()
-    val c = b.toMutableList()
-    b[2] = 100
-    println(b)
-    println(c)
-    c[2] = 88
-    println(b)
-    println(c)
-    println(a.contentToString())
+    val list2 = listOf("c","z")
+
+    val list = mutableListOf(
+        listOf("a","b","c"),
+        listOf("d","c","z"),
+        listOf("f","g","z"),
+        listOf("h","i","a"),
+        listOf("h","i","n"),
+    )
+
+    val result = list2.flatMap { element ->
+        list.filter { sublist ->
+            sublist.contains(element)
+        }
+    }
+
+    println(result)
 }
