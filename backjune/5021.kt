@@ -1,16 +1,22 @@
 package com.example.alogrithems.backjune
 
-fun main(){
-    val maker = mutableMapOf<String, Int>()
-    var inputList = mutableListOf<List<String>>()
-    var map = mutableMapOf<String, Double>()
-    val (n,m) = readln().split(" ").map { it.toInt() }
-    val king = readln()
+import java.io.BufferedReader
+import java.io.BufferedWriter
+import java.io.InputStreamReader
+import java.io.OutputStreamWriter
 
-    // 값 저장 로직
-    repeat(n){
-        inputList.add(readln().split(" "))
-    }
+fun main(){
+    val br = BufferedReader(InputStreamReader(System.`in`))
+    val bw = BufferedWriter(OutputStreamWriter(System.out))
+    val inputList = mutableListOf<List<String>>()
+    val map = hashMapOf<String, Double>()
+    val (n,m) = br.readLine().split(" ").map { it.toInt() }
+    val king = br.readLine()
+    val compareList = mutableListOf<String>()
+
+    repeat(n){ inputList.add(br.readLine().split(" ")) }
+
+    repeat(m){ compareList.add(br.readLine()) }
 
     inputList.map { it.slice(1..2) }
         .forEach {
@@ -18,13 +24,11 @@ fun main(){
                 map[it] = map.getOrDefault(it, 0.0)
             }
         }
-    inputList.map { it.first() }
-        .forEach {
-            map.remove(it)
-        }
+
+    inputList.map { it.first() }.forEach { map.remove(it) }
+
     map[king] = 1.0
 
-    // 나머지 관계를 차례로 정렬하는 로직
     while(inputList.isNotEmpty()){
         for(i in inputList.indices){
             val child = inputList[i][0]
@@ -37,17 +41,11 @@ fun main(){
         }
     }
 
-    val compareList = mutableListOf<String>()
-    repeat(m){
-        compareList.add(readln())
-    }
-    var sum = 0.0
-    var name = ""
-    compareList.forEach{
-        if((map[it] ?: 0.0) >= sum) {
-            sum = map[it]!! ?: 0.0
-            name = it
-        }
-    }
-    println(name)
+    bw.write(compareList.groupBy { map[it] }
+        .toList()
+        .sortedByDescending { it.first }
+        .take(1).first()
+        .second.first())
+    bw.flush()
+    bw.close()
 }
