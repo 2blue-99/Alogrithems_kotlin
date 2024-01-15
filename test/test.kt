@@ -21,15 +21,8 @@ import java.util.Queue
 //}
 
 fun main() {
-    val input = readln().toInt()
-    var sum = 0
-    val start = System.nanoTime()
-    for(i in 1..input){
-        sum += i
-    }
-    val end = System.nanoTime()
+    println(Math.ceil(((100 - 150) / 5).toDouble()))
 
-    println(end - start)
 }
 
 

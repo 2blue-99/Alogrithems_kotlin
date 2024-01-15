@@ -1,8 +1,5 @@
 package com.example.alogrithems.backjune
 
-import java.io.BufferedReader
-import java.io.BufferedWriter
-import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 import java.math.BigInteger
 
@@ -10,13 +7,17 @@ fun main(){
     val n = readln().toInt()
     var count = 0
     var list = mutableListOf<String>()
-    fun func(n: Int, from: Int, sub: Int, to: Int){
+
+    //                 1          2         3
+    fun func(n: Int, start: Int, sub: Int, to: Int){
+        println("$n, $start, $sub, $to")
         if(n == 0) return
         count+=1
-        func(n-1, from, to, sub)
-        if(n<=20) list.add("$from $to")
-        func(n-1, sub, from, to)
+        func(n-1, start, to, sub)
+        if(n<=20) list.add("$start $to")
+        func(n-1, sub, start, to)
     }
+
     if(n>20)
         println( BigInteger("2").pow(n).add(BigInteger("-1")).toString())
     else{
