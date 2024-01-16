@@ -37,7 +37,7 @@ fun main(){
 //        cnt += 1
 //        hanoi (num - 1, start, to, sub) // N - 1 개 원반을 시작점 -> sub
 //        sb.append("$start $to\n") // n번 째 원반 -> 목표 기둥
-//        hanoi(num - 1, sub, start, to) // N-1 개 원반 sub -> to
+//        hanoi  (num - 1, sub, start, to) // N-1 개 원반 sub -> to
 //    }
 //    hanoi(n, 1,2,3)
 //    println(cnt)
