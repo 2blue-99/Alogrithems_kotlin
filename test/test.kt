@@ -21,7 +21,7 @@ import java.util.Queue
 //}
 
 fun main() {
-    println(Math.ceil(((100 - 150) / 5).toDouble()) )
+    println(Math.ceil(( (100 - 150) / 5).toDouble()) )
 
 }
 
