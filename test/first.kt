@@ -12,7 +12,7 @@ fun main(){
     val getMap = mutableMapOf<String, Int>()
     val jisuMap = mutableMapOf<String, Int>()
     val getListMap = mutableMapOf<String, MutableList<String>>()
-    val resultMap = mutableMapOf<String, Int>()
+    val resultMap = mutableMapOf<String, Int>( )
 
     for(name in nameArr){
         giveMap[name] = 0
