@@ -33,7 +33,7 @@ fun main(){
         jisuMap[name] = giveMap[name]!! - getMap[name]!!
 
 
-    println(getListMap)
+    println(getListMap )
 
     var otherList = nameArr.copyOf().toList()
     for(name in nameArr){
