@@ -5,39 +5,23 @@ import java.io.InputStreamReader
 
 fun main() {
     val (n,s) = readln().split(" ").map{ it.toInt() }
-    val inputList = readln().split(" ").map { it.toInt() }
-    val vArr = Array(n){false}
-    val resultList = mutableListOf<List<Int>>()
+    val input = readln().split(" ").map { it.toInt() }
+    var count = 0
 
-    fun bt(list: MutableList<Int>){
-        if(list.size==0) return
+    // 사용 배열 만들기
 
-        var minus = false
-        var plus = false
-        for(i in list){
-            if(i>0) minus = true
-            if(i<0) plus = true
-            if(minus && plus) break
-        }
-        if(minus && !plus)
-            if(list.sum()>s) return
-        if(!minus && plus )
-            if(list.sum()<s) return
-
-        if(list.sum()==s) {
-            resultList.add(list.sorted())
+    fun backTracking(k: Int, sum: Int){
+        if(k==n) {
+            if (sum == s)
+                count += 1
             return
         }
-        for(i in 0 until n){
-            if(!vArr[i]){
-                vArr[i] = true
-                val newList = list.toMutableList()
-                newList.remove(inputList[i])
-                bt(newList)
-                vArr[i] = false
-            }
-        }
+
+        backTracking(k+1, sum+input[k])
+        backTracking(k+1, sum)
     }
-    bt(inputList.toMutableList())
-    println(resultList.toSet().size)
+
+    backTracking(0,0)
+
+    println(if(s==0) count-1 else count)
 }

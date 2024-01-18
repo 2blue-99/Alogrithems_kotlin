@@ -17,3 +17,4 @@ fun solution(genres: Array<String>, plays: IntArray): IntArray {
         .also { println("it") }
         .toIntArray()
 }
+//.sumOf{arr[it]}
