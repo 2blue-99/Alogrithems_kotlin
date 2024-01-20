@@ -3,13 +3,6 @@ package com.blue.algorithem_kotlin.backjune
 import kotlin.math.max
 
 fun main() {
-    // 회의실에서 최대한 많은 회의가 진행되어야 하는 문제임.
-    // 풀이
-    // 1. 경우의 수 중에서, 현재 최적의 방법을 선택하는 방식으로 계산하며 풀이
-    // 2. 1번에서 DP를 추가하여 시간복잡도를 개선하는 풀이
-
-    // 3번
-    // 정렬 + dp
     val n = readln().toInt()
     val arr = Array<List<Int>>(n){ listOf() }
     var cnt = 0
@@ -25,7 +18,6 @@ fun main() {
             cnt++
         }
     }
-
     println(cnt)
 }
 
