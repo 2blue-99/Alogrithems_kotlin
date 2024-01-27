@@ -27,6 +27,7 @@ fun main() {
                 dfs(y + 1)
             }
         }
+        
     }
     dfs(0)
     println(answer)

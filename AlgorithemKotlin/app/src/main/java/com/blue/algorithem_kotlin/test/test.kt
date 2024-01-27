@@ -9,13 +9,5 @@ import java.util.Queue
  */
 
 fun main() {
-    val list = listOf(-1,-2,1,5)
-    val list2 = listOf(-1,-2,1,5)
-    val list3 = listOf(-1,5,1,-2)
-    val list4 = mutableListOf<List<Int>>()
-    list4.add(list)
-    list4.add(list2)
-    list4.add(list3)
-    println(list4)
-    println(list4.toSet())
+    println(0%2)
 }
