@@ -3,33 +3,27 @@ package com.blue.algorithem_kotlin.backjune
 import kotlin.math.sqrt
 
 fun main() {
-    // 4보다 큰 모든 짝수는, 두 홀수 소수의 합으로 나타낼 수 있음
+    // 골드바흐 -> 4보다 큰 모든 짝수는, 두 홀수 소수의 합으로 나타낼 수 있음
+    val sosuArr = BooleanArray(1_000_001){true}
 
-    fun isMinority(num: Int): Boolean {
-        if (num < 2) return false
-        for (i in 2 until sqrt(num.toDouble()).toInt() + 1) {
-            if (num % i == 0)
-                return false
+    for(i in 2..sqrt(sosuArr.size.toDouble()).toInt()+1){
+        if(sosuArr[i]){
+            var j = 2
+            while (i*j <sosuArr.size){
+                sosuArr[i * j] = false
+                j++
+            }
         }
-        return true
     }
 
     while (true) {
         val n = readln().toInt()
-        var result = emptyList<Int>()
-
-        if (n == 0) break
-
-        for (i in 3..n) {
-            if (i % 2 == 0) continue
-            if ((n - i) % 2 == 0) continue
-            if (!isMinority(i)) continue
-            if (isMinority(n - i)) {
-                result = listOf(i, n - i)
+        if(n == 0 ) break
+        for (i in 2..n) {
+            if(sosuArr[i] && sosuArr[n-i]){
+                println("$n = $i + ${n-i}")
                 break
             }
         }
-        if (result.isEmpty()) println("Goldbach's conjecture is wrong.")
-        else println("$n = ${result.first()} + ${result.last()}")
     }
 }

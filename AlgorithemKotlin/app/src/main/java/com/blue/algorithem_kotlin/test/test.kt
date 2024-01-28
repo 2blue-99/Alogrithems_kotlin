@@ -1,5 +1,15 @@
 package com.example.alogrithems.test
 
+import android.os.Build
+import androidx.annotation.RequiresApi
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import java.time.LocalDateTime
+import java.util.Date
 import java.util.LinkedList
 import java.util.Queue
 
@@ -8,6 +18,10 @@ import java.util.Queue
  * pureum
  */
 
+@RequiresApi(Build.VERSION_CODES.O)
 fun main() {
-    println(0%2)
+    val list = listOf(1,2,3)
+    println(list.subList(0,3))
+    list.subList(0,3)
+
 }
