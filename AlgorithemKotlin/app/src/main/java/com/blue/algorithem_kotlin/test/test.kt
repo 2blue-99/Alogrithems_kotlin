@@ -20,8 +20,5 @@ import java.util.Queue
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun main() {
-    val list = listOf(1,2,3)
-    println(list.subList(0,3))
-    list.subList(0,3)
-
+    println(LocalDateTime.now())
 }
