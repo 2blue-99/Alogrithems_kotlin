@@ -4,6 +4,7 @@ import java.math.BigInteger
 
 val myArray1010 = Array<BigInteger>(31){BigInteger.ZERO}
 
+
 fun main(){
     repeat(readln().toInt()){
         val (a,b) = readln().split(" ").map { it.toInt() }
