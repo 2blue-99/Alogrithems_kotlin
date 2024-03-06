@@ -1,5 +1,6 @@
 package com.blue.algorithem_kotlin.backjune
 
+
 fun main() {
     val s = readln()
     val t = readln()
