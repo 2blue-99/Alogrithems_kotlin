@@ -1,19 +1,11 @@
 package com.blue.algorithem_kotlin.test
 
+import android.os.Build
+import androidx.annotation.RequiresApi
+import java.time.LocalDateTime
+
+@RequiresApi(Build.VERSION_CODES.O)
 fun main() {
-    val index = 8
-    when (index) {
-        1, 2, 4, 5 -> {
-            println("1,2,4,5")
-        }
-        3, 6 -> {
-            println("3,6")
-        }
-        7, 8 -> {
-            println("7,8")
-        }
-        9 -> {
-            println("9")
-        }
-    }
+    val test = LocalDateTime.now()
+    println(test)
 }
