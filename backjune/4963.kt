@@ -3,7 +3,6 @@ package com.blue.algorithem_kotlin.backjune
 import java.util.*
 
 fun main() {
-
     while(true){
         val (mw,mh) = readln().split(" ").map{it.toInt()}
         if(mw==0 && mh ==0) break
@@ -39,4 +38,3 @@ fun main() {
         }
         println(cnt)
     }
-}
