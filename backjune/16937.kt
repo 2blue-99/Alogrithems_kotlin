@@ -9,6 +9,7 @@ fun main() {
 
     val list = mutableListOf<List<Int>>()
     val result = mutableListOf<Int>()
+    var max = 0
 
     repeat(n) { list.add(readln().split(" ").map { it.toInt() }) }
 
@@ -23,21 +24,26 @@ fun main() {
             var a = list[i] //2 1
             var b = list[j] //3 4
             var sum = a.first() * a.last() + b.first() * b.last()
+            if(sum < max) continue
 
             if (check(a, b)) {
                 result.add(sum)
+                max = sum
                 continue
             }
             if (check(a.reversed(), b)) {
                 result.add(sum)
+                max = sum
                 continue
             }
             if (check(a, b.reversed())) {
                 result.add(sum)
+                max = sum
                 continue
             }
             if (check(a.reversed(), b.reversed())) {
                 result.add(sum)
+                max = sum
                 continue
             }
         }
