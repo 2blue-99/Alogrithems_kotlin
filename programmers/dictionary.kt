@@ -4,8 +4,9 @@ class dictionary {
     fun solution(word: String): Int {
         var answer = -1
         var find = false
-        val list = listOf("A","E","I","O","U")
-
+        val list = listOf("A","E","I","O","U").slice(1-1 until 1)
+        val arr = arrayOf(1,2,3).toMutableList()
+        val a: BooleanArray
         fun bt(w: String){
             answer++
             if(w == word){
