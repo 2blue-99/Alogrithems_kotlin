@@ -2,7 +2,96 @@ package com.blue.algorithem_kotlin.programmers
 
 import java.util.*
 
+
+fun main(){
+    SolutionAA().solution(intArrayOf(1,2,1,2), intArrayOf(1,10,1,2))
+}
+
+class SolutionAA {
+    fun solution(queue1: IntArray, queue2: IntArray): Int {
+        var answer: Int = -1
+        var cnt = 0
+        val queueA: Queue<Int> = LinkedList()
+        val queueB: Queue<Int> = LinkedList()
+        var sumA = 0
+        var sumB = 0
+        queue1.forEach{
+            sumA+=it
+            queueA.add(it)
+        }
+        queue2.forEach{
+            sumB+=it
+            queueB.add(it)
+        }
+
+
+        while(cnt < queue1.size * 4){
+            if(sumA < sumB){
+                val poll = queueB.poll()
+                sumA+=poll
+                sumB-=poll
+                queueA.add(poll)
+            }
+            else if(sumA > sumB){
+                val poll = queueA.poll()
+                sumB+=poll
+                sumA-=poll
+                queueB.add(poll)
+            }else{
+                answer = cnt
+                break
+            }
+            cnt++
+        }
+
+        println(answer)
+        return answer
+    }
+}
+
 class equal_two_queue {
+    fun solution(queue1: IntArray, queue2: IntArray): Int {
+        var answer: Int = -1
+        val queueA: Queue<Int> = LinkedList()
+        val queueB: Queue<Int> = LinkedList()
+        var sumA = 0L
+        var sumB = 0L
+        var cnt = 0
+        queue1.forEach{
+            sumA += it
+            queueA.add(it)
+        }
+        queue2.forEach{
+            sumB += it
+            queueB.add(it)
+        }
+
+        while(cnt <= queue1.size * 4){
+
+            if(sumA == sumB){
+                answer = cnt
+                break
+            }
+
+            if(sumA > sumB){
+                val poll = queueA.poll()
+                sumA-= poll
+                sumB+= poll
+                queueB.add(poll)
+            }else if(sumA < sumB){
+                val poll = queueB.poll()
+                sumB-= poll
+                sumA+= poll
+                queueA.add(poll)
+            }
+
+            cnt++
+        }
+        return answer
+    }
+}
+
+class equal_two_queue2 {
     fun solution(queue1: IntArray, queue2: IntArray): Int {
         // aueue2 -> queue1 쪽으로 보내면서 원소합/2 보다 크면 queue1 -> quque2 로 보냄
         // queue1 -> queue2 쪽으로 보내면서 원소합/2 보다 크면 queue2 -> queue1 로 보냄
@@ -59,7 +148,7 @@ class equal_two_queue {
     }
 }
 
-class equal_two_queue2 {
+class equal_two_queue3 {
     fun solution(queue1: IntArray, queue2: IntArray): Int {
         var answer: Int = -1
         // 한줄에 세우고 slice로 왼쪽으로 한번, 오른쪽으로 한번
