@@ -6,50 +6,35 @@ fun main(){
 
 class Ranking {
     fun solution(n: Int, results: Array<IntArray>): Int {
-        // 인접 리스트 만들기 - win / lose
-        // win을 통해 n에게 진m을 파악하고 lose[m]에 접급하여 n이 졌던것들을 추가함
-        // win lose의 합이 n-1이 될 때 순위 판단 가능
         var answer = 0
-        val winMap = Array(n+1){mutableSetOf<Int>()}
-        val loseMap = Array(n+1){mutableSetOf<Int>()}
-        val visit = BooleanArray(n+1)
+        val arr = Array(n){BooleanArray(n)}
 
         results.forEach{
             val win = it[0]
             val lose = it[1]
-            winMap[win].add(lose)
-            loseMap[lose].add(win)
+            arr[win-1][lose-1] = true
         }
 
-        // winMap.forEach{println(it)}
-        // loseMap.forEach{println(it)}
-
-        fun dfs(index: Int, list: ArrayList<Int>): ArrayList<Int> {
-            val result = arrayListOf<Int>()
-            for(loser in winMap[index]){
-                dfs(loser, list).forEach{
-                    result.add(it)
+        repeat(n){ k ->
+            repeat(n){ i ->
+                repeat(n){ j ->
+                    if(!arr[i][j] && arr[i][k] && arr[k][j])
+                        arr[i][j] = true
                 }
             }
-            result.forEach {
-                winMap[index].add(it)
+        }
+
+        repeat(n){ i ->
+            val row = arr[i].count{it}
+            var column = 0
+            repeat(n){ k ->
+                if(arr[k][i])
+                    column+=1
             }
-            result.add(index)
-            return result
-        }
-
-        winMap.indices.forEach {
-            dfs(it, arrayListOf())
-        }
-        winMap.forEach{println(it)}
-
-
-        for(i in 1..n){
-            val winCount = winMap[i].count()
-            val loseCount = loseMap[i].count()
-            if(winCount + loseCount == n-1)
+            if(row+column == n-1)
                 answer++
         }
+
         return answer
     }
 }
