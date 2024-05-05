@@ -6,5 +6,5 @@ fun main() {
         val (name,rank) = readln().split(" ")
         list[name] = rank.toInt()
     }
-    println(list.toList().sortedWith(compareBy<Pair<String,Int>>{it.first}.thenBy{it.second}).first().first)
+    println(list.toList().sortedWith(compareByDescending<Pair<String,Int>>{it.first}.thenBy{it.second}).first().first)
 }
