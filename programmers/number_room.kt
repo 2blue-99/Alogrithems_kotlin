@@ -4,11 +4,7 @@ import java.util.*
 
 
 fun main() {
-//    Number_Room().solution(intArrayOf(2,5,2,7))
-//    Number_Room().solution(intArrayOf(2,5))
     Number_Room().solution(intArrayOf(0, 6, 4, 2, 7, 2, 5))
-    Number_Room().solution(intArrayOf(6, 4, 2, 0, 6, 4, 2, 0))
-//    Number_Room().solution(intArrayOf(6, 6, 6, 4, 4, 4, 2, 2, 2, 0, 0, 0, 1, 6, 5, 5, 3, 6, 0))
 }
 
 class Number_Room {
