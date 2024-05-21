@@ -4,7 +4,8 @@ import java.util.*
 
 
 fun main() {
-    Number_Room().solution(intArrayOf(0, 6, 4, 2, 7, 2, 5))
+//    Number_Room().solution(intArrayOf(0, 6, 4, 2, 7, 2, 5))
+    Number_Room2().solution(intArrayOf(2,5,2,7))
 }
 
 class Number_Room {
@@ -34,6 +35,35 @@ class Number_Room {
             }
         }
         println(answer)
+        return answer
+    }
+}
+
+class Number_Room2 {
+    fun solution(arrows: IntArray): Int {
+        // 만났을 때 && 간선 정보가 없을 때 &&
+        var answer = 0
+        var xList = listOf(0,1,1,1,0,-1,-1,-1)
+        var yList = listOf(-1,-1,0,1,1,1,0,-1)
+        var (px, py) = listOf(0,0)
+        var map = mutableMapOf<Pair<Int,Int>, MutableSet<Pair<Int, Int>>>()
+
+
+        arrows.forEach {
+            repeat(2){ _ ->
+                val nx = px+xList[it]
+                val ny = py+yList[it]
+                if(map.contains(Pair(nx, ny)))
+                    if (!map[Pair(nx, ny)]!!.contains(Pair(px, py)))
+                        answer++
+
+                map.getOrPut(Pair(nx, ny)){mutableSetOf()}.add(Pair(px, py))
+                map.getOrPut(Pair(px, py)){mutableSetOf()}.add(Pair(nx, ny))
+
+                px = nx
+                py = ny
+            }
+        }
         return answer
     }
 }

@@ -14,19 +14,8 @@ import kotlinx.coroutines.runBlocking
 import java.util.*
 
 
-fun main(): Unit = runBlocking {
-    var map = mutableMapOf<Pair<Int, Int>, ArrayList<Pair<Int, Int>>>()
-    var map2 = mutableMapOf<Pair<Int, Int>, Boolean>()
+fun main() {
+    var gap = intArrayOf(0,0,0)
 
-    println(map[Pair(1,1)])
-
-    println(map.getOrPut(Pair(1,1)){ arrayListOf(Pair(1,1)) })
-
-    println(map[Pair(1,1)])
-
-    map.getOrPut(Pair(1,1)){ arrayListOf(Pair(5,5)) }
-
-    println(map[Pair(1,1)])
-
-
+    var gap2 = listOf(1,2,3,4)
 }
