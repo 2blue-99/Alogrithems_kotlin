@@ -15,7 +15,6 @@ import java.util.*
 
 
 fun main() {
-    var gap = intArrayOf(0,0,0)
+    var intArr = intArrayOf(1,2,3,4)
 
-    var gap2 = listOf(1,2,3,4)
 }
