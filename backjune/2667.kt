@@ -9,9 +9,6 @@ var visitArr = arrayOf(booleanArrayOf())
 var size = 0
 
 fun main(){
-    // 0,0에서부터 n,m까지 하나씩 지나감
-    // 가다가 0이 아닐경우 bfs로 체크
-    // 끝나면 단지 번호와 단지 개수를 맵에다 체크
     size = readln().toInt()
     val map = mutableMapOf<Int, Int>()
     var bg = 1
