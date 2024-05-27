@@ -15,6 +15,8 @@ import java.util.*
 
 
 fun main() {
-    var intArr = intArrayOf(1,2,3,4)
+    var a = "0"
+    var b = "0"
+    println(a < b)
 
 }
