@@ -15,8 +15,10 @@ import java.util.*
 
 
 fun main() {
-    var a = "0"
-    var b = "0"
-    println(a < b)
-
+    var stack: Stack<Int> = Stack()
+    stack.add(1)
+    stack.add(1)
+    stack.add(1)
+    stack.add(1)
+    println(stack.joinToString(""))
 }
