@@ -3,38 +3,54 @@ package com.blue.algorithem_kotlin.programmers
 import java.util.Stack
 
 fun main() {
-//    val gap = Big_Number().solution("1924", 2)
-//    val gap = Big_Number().solution("9876543214", 4)
-//    val gap = Big_Number().solution("190000002", 3)
-    val gap = Big_Number().solution("333222111", 3)
-//    val gap = Big_Number().solution("1231234", 3)
-//    val gap = Big_Number().solution("4177252841", 4)
-    println(gap)
+    Big_Number().solution("333222111", 3)
 }
 
+// 24.05.29 풀이
 class Big_Number {
     fun solution(number: String, k: Int): String {
-        var nk = k
-        var list = number.toList().map{it.toString().toInt()}
-        val stack = Stack<Int>()
+        var stack = Stack<Int>()
         var index = 0
-        while(index < list.size){
-            if(stack.isEmpty() || stack.peek() >= list[index]){
-                stack.add(list[index])
+        var pk = k
+        while(index < number.length){
+            val num = number[index].toString().toInt()
+            if(pk != 0 && stack.isNotEmpty() && stack.peek() < num){
+                stack.pop()
+                pk--
             }else{
-                while(nk > 0 && stack.isNotEmpty() && stack.peek() < list[index]) {
-                    stack.pop()
-                    nk--
-                }
-                stack.add(list[index])
+                stack.add(num)
+                index++
             }
-            index ++
         }
-        return stack.joinToString("").slice(0 until list.size - k)
+        return stack.slice(0 until number.length-k).joinToString("")
     }
 }
 
+// 24.05.28 풀이
+//class Big_Number {
+//    fun solution(number: String, k: Int): String {
+//        var nk = k
+//        var list = number.toList().map{it.toString().toInt()}
+//        val stack = Stack<Int>()
+//        var index = 0
+//        while(index < list.size){
+//            if(stack.isEmpty() || stack.peek() >= list[index]){
+//                stack.add(list[index])
+//            }else{
+//                while(nk > 0 && stack.isNotEmpty() && stack.peek() < list[index]) {
+//                    stack.pop()
+//                    nk--
+//                }
+//                stack.add(list[index])
+//            }
+//            index ++
+//        }
+//        return stack.joinToString("").slice(0 until list.size - k)
+//    }
+//}
 
+
+// 24.05.27 풀이
 //class Big_Number {
 //    fun solution(number: String, k: Int): String {
 //        var answer = 0L
