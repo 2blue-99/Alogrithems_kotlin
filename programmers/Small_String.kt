@@ -10,8 +10,7 @@ class Small_String {
         val size = p.length
         var start = 0
         while(true){
-            val gap = t.slice(start until start+size)
-            if(gap.toInt() <= p.toInt())
+            if(t.slice(start until start+size) <= p)
                 answer++
             start++
             if(start+size > t.length) break
