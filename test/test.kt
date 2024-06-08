@@ -19,8 +19,8 @@ import java.util.*
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun main() {
-    val now = LocalDate.now()
-    val gap = LocalDate.now().plusYears(7)
-    val new = LocalDate.parse("1999-01-01")
-    println(new)
+    val a = "2022.05.19"
+    val b = "2022.05.18"
+    var gap = 1
+    println(a<b)
 }
