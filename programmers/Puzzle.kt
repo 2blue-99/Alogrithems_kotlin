@@ -26,7 +26,7 @@ fun main(){
 
 class Puzzle() {
     fun solution(game_board: Array<IntArray>, table: Array<IntArray>): Int {
-        var answer: Int = -1
+        var answer: Int = 0
         val size = table.size
         val queue: Queue<Pair<Int,Int>> = LinkedList()
         val blockList = mutableListOf<Array<IntArray>>()
@@ -107,24 +107,45 @@ class Puzzle() {
                 }
             }
 
-            rotation.
+            var minR = 0
+            var minC = 0
 
-            return rotation
+            for((index, i) in rotation.withIndex()){
+                if(i.contains(1))
+                    break
+                minR = index
+            }
+
+            loop@for(r in rotation.indices){
+                for(c in rotation.indices){
+                    if(rotation[c][r] == 1)
+                        break@loop
+                }
+                minC = r+1
+            }
+
+            for(r in rotation.indices) {
+                for (c in rotation[0].indices) {
+                    if (rotation[r][c] == 1)
+                        result[r-minR][c-minC] = 1
+                }
+            }
+
+            return result
         }
 
         for(empty in emptyList){
-            loopBlock@for(block in blockList){
-                var newBlock = block.copyOf()
+            loopBlock@for(index in blockList.indices){
+                var newBlock = blockList[index].copyOf()
                 for(rotation in 0..3){
                     var ok = true
                     // 사이즈 비교
-                    if(empty.size <= newBlock.size || empty[0].size <= newBlock[0].size) {
-                        rotationLoop@ for (r in empty.indices) {
-                            for (c in empty[0].indices) {
-                                if (empty[r][c] != newBlock[r][c]) {
-                                    ok = false
-                                    break@rotationLoop
-                                }
+
+                    if(empty.size == newBlock.size && empty[0].size == newBlock[0].size) {
+                        for (r in empty.indices) {
+                            if (!empty[r].contentEquals(newBlock[r])) {
+                                ok = false
+                                break
                             }
                         }
                     }else{
@@ -135,6 +156,7 @@ class Puzzle() {
                         newBlock.forEach {
                             answer+=it.count { it==1 }
                         }
+                        blockList.removeAt(index)
                         break@loopBlock
                     }
                     newBlock = rotation(newBlock)

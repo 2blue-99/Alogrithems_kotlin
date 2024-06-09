@@ -5,12 +5,9 @@ import androidx.annotation.RequiresApi
 
 
 fun main() {
-    val arr = Array(1){IntArray(1)}
-    val new = arr.copyOf()
-    arr.forEach { println(it.contentToString()) }
-    new.forEach { println(it.contentToString()) }
-    arr[0] = intArrayOf(5)
-    println()
-    arr.forEach { println(it.contentToString()) }
-    new.forEach { println(it.contentToString()) }
+    val arr = Array(1){ intArrayOf(1,2,3,4,5) }
+    val arr2 = Array(1){ intArrayOf(1,2,3,4,5) }
+    val arr3 = Array(1){0}
+    val arr4 = Array(1){0}
+    println(arr3.contentEquals(arr4))
 }
