@@ -5,5 +5,6 @@ import androidx.annotation.RequiresApi
 
 
 fun main() {
-    println(1 / 0)
+    val a: Int? = null
+    println(a.toString())
 }

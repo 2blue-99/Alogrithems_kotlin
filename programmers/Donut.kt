@@ -27,37 +27,78 @@ fun main() {
 
 class Donut {
     fun solution(edges: Array<IntArray>): IntArray {
-        // 정점 : 들어오는거 0, 나가는거 2 이상
-        // 도넛 : 정점 간선 개수 - 막대 - 8자
-        // 막대 : 들어오는거 1, 나가는거 0
-        // 8자  : 들어오는거 2 이상, 나가는거 2 이상
-        var answer = IntArray(4)
-        val maxNode = edges.flatMap { it.toList() }.maxOf { it }
-        // 들어오는거 나가는거
-        var arr = Array(maxNode+1){i -> arrayOf(0,0) }
+        // 새 정점 구하기
+        // 향하는 인접리스트
+        // Boolean 인덱스 배열
+        // 향하는 인접리스트에 두개이상있고, Boolean 인덱스 배열이 false일 경우 새정점
 
-        edges.forEach {
-            // 2 , 3
+        // 향하는 인접리스트 비었음 -> 막대
+        // 향하는 인접리스트 2개 이상 -> 8자
+        // 정점 인접리스트 개수 - 막대 - 8자
+        var answer: IntArray = IntArray(4)
+        var max = edges.flatMap{it.toList()}.maxOf{it}
+        // 들어오는거, 나가는거
+        val giveArr = Array(max+1){it -> arrayOf(0,0)}
+
+        edges.forEach{
             val (from, to) = it
-            arr[from][1] += 1
-            arr[to][0] += 1
+            giveArr[from][1] += 1
+            giveArr[to][0] += 1
         }
 
-        arr.forEachIndexed { index, i ->
-            val (get, give) = i
-            // 정점
-            if(get == 0 && give >= 2) answer[0] = index
-            // 막대
-            else if(get >= 1 && give == 0 ) answer[2] += 1
-            // 8자
-            else if(get >= 2 && give >= 2) answer[3] += 1
+        for((index, pair) in giveArr.withIndex()){
+            if(index==0) continue
+            //정점
+            if(pair[0] == 0 && pair[1] >= 2)
+                answer[0] = index
+            //막대
+            else if(pair[0] >= 1 && pair[1] == 0)
+                answer[2] += 1
+            //8자
+            else if(pair[0] >= 2 && pair[1] >= 2)
+                answer[3] += 1
         }
 
-        answer[1] = arr[answer[0]][1] - answer[2] - answer[3]
+        answer[1] = giveArr[answer[0]][1] - answer[2] - answer[3]
+
 
         return answer
     }
 }
+
+//class Donut {
+//    fun solution(edges: Array<IntArray>): IntArray {
+//        // 정점 : 들어오는거 0, 나가는거 2 이상
+//        // 도넛 : 정점 간선 개수 - 막대 - 8자
+//        // 막대 : 들어오는거 1, 나가는거 0
+//        // 8자  : 들어오는거 2 이상, 나가는거 2 이상
+//        var answer = IntArray(4)
+//        val maxNode = edges.flatMap { it.toList() }.maxOf { it }
+//        // 들어오는거 나가는거
+//        var arr = Array(maxNode+1){i -> arrayOf(0,0) }
+//
+//        edges.forEach {
+//            // 2 , 3
+//            val (from, to) = it
+//            arr[from][1] += 1
+//            arr[to][0] += 1
+//        }
+//
+//        arr.forEachIndexed { index, i ->
+//            val (get, give) = i
+//            // 정점
+//            if(get == 0 && give >= 2) answer[0] = index
+//            // 막대
+//            else if(get >= 1 && give == 0 ) answer[2] += 1
+//            // 8자
+//            else if(get >= 2 && give >= 2) answer[3] += 1
+//        }
+//
+//        answer[1] = arr[answer[0]][1] - answer[2] - answer[3]
+//
+//        return answer
+//    }
+//}
 
 //class Donut {
 //    fun solution(edges: Array<IntArray>): IntArray {
