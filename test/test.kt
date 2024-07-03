@@ -9,6 +9,5 @@ data class Test(
 )
 
 fun main() {
-    val gap: List<Test> = mutableListOf<Test>()
-    println(gap.isEmpty())
+    val list = mutableListOf<Int>()
 }
