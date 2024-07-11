@@ -6,6 +6,8 @@ fun main(){
     println(solution(10,40, 5))
     println(solution(10,40,30))
     println(solution(2, 5,4))
+
+    readLine()!!.toInt()
 }
 fun solution(x: Int, y: Int, n: Int): Int {
     var dp = IntArray(y+1)
